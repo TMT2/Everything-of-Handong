@@ -1,5 +1,11 @@
 # Everything of Handong, from 1995 to 2024 
 
+## Team Member
+
+- 최재성 ([sorrychoe](https://github.com/sorrychoe))
+- 유가이 드미트리 ([yudm3](https://github.com/yudm3))
+- 천정원 ([garden1000](https://github.com/garden1000))
+
 ## Project Structure
 
 ```bash
