@@ -1,9 +1,5 @@
 # Everything of Handong, from 1995 to 2024 
 
-![GitHub repo size](https://img.shields.io/github/repo-size/TMT2/Final-Team-Project)
-![GitHub last commit](https://img.shields.io/github/last-commit/TMT2/Final-Team-Project)
-![GitHub stars](https://img.shields.io/github/stars/TMT2/Final-Team-Project?style=social)
-
 ## Project Structure
 
 ```bash
