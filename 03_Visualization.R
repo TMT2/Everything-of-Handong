@@ -6,8 +6,6 @@ library(showtext)
 font_add_google(name = "Nanum Gothic", family = "nanumgothic")
 showtext_auto()
 
-setwd("~/Desktop/24-2 학기 자료/Text Mining/Team_project")
-
 load(file = "result/stm_model1.RData")
 load(file = "result/stm_model2.RData")
 load(file = "result/stm_model3.RData")
@@ -87,13 +85,16 @@ stm_effects <- estimateEffect(seq(1,6) ~Era+Polarity_,
 
 summary(stm_effects)
 
+label <- c("한동대의 기독교 정신", "한동대와 법률 관련 이슈", "한동대 교수들의 정치 외교 브리핑", "대학 입시", "한동대 구성원 소식", "한동대학교의 대외 이슈")
+
 plot(stm_effects, 
      covariate = "Era", 
      method = "continuous",
      topics = c(1), 
      model = stm_model1,
      xlab = "Time",
-     main = "Topic Prevalence Over Time",
+     main = "Topic 1's Prevalence Over Time",
+     printlegend = F
 )
 plot(stm_effects, 
      covariate = "Era", 
@@ -101,7 +102,8 @@ plot(stm_effects,
      topics = c(2), 
      model = stm_model1,
      xlab = "Time",
-     main = "Topic Prevalence Over Time",
+     main = "Topic 2's Prevalence Over Time",
+     printlegend = F
 )
 plot(stm_effects, 
      covariate = "Era", 
@@ -109,7 +111,8 @@ plot(stm_effects,
      topics = c(3), 
      model = stm_model1,
      xlab = "Time",
-     main = "Topic Prevalence Over Time",
+     main = "Topic 3's Prevalence Over Time",
+     printlegend = F
 )
 plot(stm_effects, 
      covariate = "Era", 
@@ -117,7 +120,8 @@ plot(stm_effects,
      topics = c(4), 
      model = stm_model1,
      xlab = "Time",
-     main = "Topic Prevalence Over Time",
+     main = "Topic 4's Prevalence Over Time",
+     printlegend = F
 )
 plot(stm_effects, 
      covariate = "Era", 
@@ -125,7 +129,8 @@ plot(stm_effects,
      topics = c(5), 
      model = stm_model1,
      xlab = "Time",
-     main = "Topic Prevalence Over Time",
+     main = "Topic 5's Prevalence Over Time",
+     printlegend = F
 )
 plot(stm_effects, 
      covariate = "Era", 
@@ -133,7 +138,8 @@ plot(stm_effects,
      topics = c(6), 
      model = stm_model1,
      xlab = "Time",
-     main = "Topic Prevalence Over Time",
+     main = "Topic 6's Prevalence Over Time",
+     printlegend = F
 )
 
 plot(stm_effects, 
@@ -141,9 +147,13 @@ plot(stm_effects,
      method = "continuous",
      topics = c(1:6), 
      model = stm_model1,
+     labeltype = "custom",
+     custom.labels = label,
      xlab = "Time",
-     main = "Topic Prevalence Over Time",
+     main = "All Topic Prevalence Over Time",
+     printlegend = F
 )
+legend(0,.4, label, lwd=2, col=c("red", "yellow", "green", "skyblue", "blue", "purple"), cex=.4)
 
 plot(stm_model2, type="perspectives", topics=1)
 plot(stm_model2, type="perspectives", topics=2)
@@ -164,6 +174,8 @@ plot(stm_effects2,
      method = "difference",
      cov.value1 = "liberal",
      cov.value2 = "conservative",
+     labeltype = "custom",
+     custom.labels = label,
      xlim = c(-.3, .3),
      main = "liberal VS conservative",
      xlab = "보수적 ........ 진보적")
@@ -175,7 +187,7 @@ stm_effects3 <- estimateEffect(c(1) ~ Polarity_*Era,
 
 plot(stm_effects3, covariate="Era", 
      model=stm_model3, method="continuous", xlab="Year", moderator="Polarity_",
-     moderator.value="liberal", linecol="blue", ylim=c(-.3,.8), printlegend=F)
+     moderator.value="liberal", linecol="blue", ylim=c(-.3,.8), printlegend=F, main = "Topic 1's Propotion")
 plot(stm_effects3, covariate="Era", 
      model=stm_effects3, method="continuous", xlab="Year", moderator="Polarity_",
      moderator.value="conservative", linecol="red",ylim=c(-.3,.8), add=T, printlegend=F)
@@ -188,7 +200,7 @@ stm_effects3 <- estimateEffect(c(2) ~ Polarity_*Era,
 
 plot(stm_effects3, covariate="Era", 
      model=stm_model3, method="continuous", xlab="Year", moderator="Polarity_",
-     moderator.value="liberal", linecol="blue", ylim=c(-.3,.8), printlegend=F)
+     moderator.value="liberal", linecol="blue", ylim=c(-.3,.8), printlegend=F, main = "Topic 2's Propotion")
 plot(stm_effects3, covariate="Era", 
      model=stm_effects3, method="continuous", xlab="Year", moderator="Polarity_",
      moderator.value="conservative", linecol="red",ylim=c(-.3,.8), add=T, printlegend=F)
@@ -201,7 +213,7 @@ stm_effects3 <- estimateEffect(c(3) ~ Polarity_*Era,
 
 plot(stm_effects3, covariate="Era", 
      model=stm_model3, method="continuous", xlab="Year", moderator="Polarity_",
-     moderator.value="liberal", linecol="blue", ylim=c(-.3,.8), printlegend=F)
+     moderator.value="liberal", linecol="blue", ylim=c(-.3,.8), printlegend=F, main = "Topic 3's Propotion")
 plot(stm_effects3, covariate="Era", 
      model=stm_effects3, method="continuous", xlab="Year", moderator="Polarity_",
      moderator.value="conservative", linecol="red",ylim=c(-.3,.8), add=T, printlegend=F)
@@ -214,7 +226,7 @@ stm_effects3 <- estimateEffect(c(4) ~ Polarity_*Era,
 
 plot(stm_effects3, covariate="Era", 
      model=stm_model3, method="continuous", xlab="Year", moderator="Polarity_",
-     moderator.value="liberal", linecol="blue", ylim=c(-.3,.8), printlegend=F)
+     moderator.value="liberal", linecol="blue", ylim=c(-.3,.8), printlegend=F, main = "Topic 4's Propotion")
 plot(stm_effects3, covariate="Era", 
      model=stm_effects3, method="continuous", xlab="Year", moderator="Polarity_",
      moderator.value="conservative", linecol="red",ylim=c(-.3,.8), add=T, printlegend=F)
@@ -227,7 +239,7 @@ stm_effects3 <- estimateEffect(c(5) ~ Polarity_*Era,
 
 plot(stm_effects3, covariate="Era", 
      model=stm_model3, method="continuous", xlab="Year", moderator="Polarity_",
-     moderator.value="liberal", linecol="blue", ylim=c(-.3,.8), printlegend=F)
+     moderator.value="liberal", linecol="blue", ylim=c(-.3,.8), printlegend=F, main = "Topic 5's Propotion")
 plot(stm_effects3, covariate="Era", 
      model=stm_effects3, method="continuous", xlab="Year", moderator="Polarity_",
      moderator.value="conservative", linecol="red",ylim=c(-.3,.8), add=T, printlegend=F)
@@ -240,7 +252,7 @@ stm_effects3 <- estimateEffect(c(6) ~ Polarity_*Era,
 
 plot(stm_effects3, covariate="Era", 
      model=stm_model3, method="continuous", xlab="Year", moderator="Polarity_",
-     moderator.value="liberal", linecol="blue", ylim=c(-.3,.8), printlegend=F)
+     moderator.value="liberal", linecol="blue", ylim=c(-.3,.8), printlegend=F, main = "Topic 6's Propotion")
 plot(stm_effects3, covariate="Era", 
      model=stm_effects3, method="continuous", xlab="Year", moderator="Polarity_",
      moderator.value="conservative", linecol="red",ylim=c(-.3,.8), add=T, printlegend=F)
